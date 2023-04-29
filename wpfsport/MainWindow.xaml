@@ -1,0 +1,25 @@
+﻿<Window x:Class="wpfsport.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpfsport"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="432" Width="586">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Label Content="ООО Спорт" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
+        <TextBox x:Name="login" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327" Margin="73,0,0,0" ></TextBox>
+        <Label Content="логин" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" Margin="428,43,0,0" ></Label>
+        <TextBox x:Name="password" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327" Margin="73,0,0,0" ></TextBox>
+        <Label Content="пароль" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" Margin="428,43,0,0" ></Label>
+        <Button x:Name="entr" Content="Войти" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
+        <Button x:Name="tovars" Content="Каталог" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF498C51" Margin="391,0,0,0"/>
+    </Grid>
+
+</Window>

@@ -1,0 +1,41 @@
+﻿<Window x:Class="wpfsport.Tovars"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpfsport"
+        mc:Ignorable="d"
+        Title="Tovars" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Label Content="ООО Спорт" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
+        <Button x:Name="entr" Content="назад" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
+        <DataGrid x:Name="ProductGrid" DataGridCell.Selected="ProductGrid_Selected" AutoGenerateColumns="False" EnableRowVirtualization="True"
+                    HorizontalAlignment="Left"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="ProductGrid_SelectionChanged" Width="433" Margin="10,51,0,4" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="name" Binding="{Binding ProductName}"
+                                    Header="наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="cost" Binding="{Binding ProductCost}"
+                                    Header="стоимость" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="discount" Binding="{Binding ProductDiscountAmount}"
+                                    Header="скидка" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="quantity" Binding="{Binding ProductQuantityInStock}"
+                                    Header="количество" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="description" Binding="{Binding ProductDescription}"
+                                    Header="описание" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ComboBox Text="Скидки" HorizontalAlignment="Left" Margin="610,54,0,204" Width="143" Grid.RowSpan="2" >
+            <ComboBoxItem Content="0-10%" Selected="ComboBoxItem_Selected"></ComboBoxItem>
+            <ComboBoxItem Content="10-15%" Selected="ComboBoxItem_Selected_1"></ComboBoxItem>
+            <ComboBoxItem  Content="15-100%" Selected="ComboBoxItem_Selected_2"></ComboBoxItem>
+            <ComboBoxItem  Content="0-100%" Selected="ComboBoxItem_Selected_3"></ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>
