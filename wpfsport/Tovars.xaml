@@ -9,29 +9,62 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Content="ООО Спорт" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
-        <Button x:Name="entr" Content="назад" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
-        <DataGrid x:Name="ProductGrid" DataGridCell.Selected="ProductGrid_Selected" AutoGenerateColumns="False" EnableRowVirtualization="True"
-                    HorizontalAlignment="Left"
-                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="ProductGrid_SelectionChanged" Width="433" Margin="10,51,0,4" Grid.RowSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="name" Binding="{Binding ProductName}"
-                                    Header="наименование" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="cost" Binding="{Binding ProductCost}"
-                                    Header="стоимость" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="discount" Binding="{Binding ProductDiscountAmount}"
-                                    Header="скидка" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="quantity" Binding="{Binding ProductQuantityInStock}"
-                                    Header="количество" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="description" Binding="{Binding ProductDescription}"
-                                    Header="описание" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="ООО Спорт" Grid.ColumnSpan="2" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
+        <Button x:Name="entr" Content="назад" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
+        <ListView Background="#FFFCF0F0" Grid.Row="2" x:Name="CatalogView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical">
 
-        <ComboBox Text="Скидки" HorizontalAlignment="Left" Margin="610,54,0,204" Width="143" Grid.RowSpan="2" >
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Grid Width="400" Height="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Column="0" Grid.RowSpan ="4" Source="{Binding ProductPhoto, FallbackValue={StaticResource NullImage}}" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock Grid.Column="1" Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+
+                            <Label  Grid.Row="0" Grid.Column="1" Content="Наименование:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                            <Label  Grid.Row="0" Grid.Column="1" Content="{Binding ProductName}" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                            <!--<Label  Grid.Row="1" Grid.Column="1" Content="Описание:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>-->
+                            <Label  Grid.Row="1" Grid.Column="1" Content="{Binding ProductDescription}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                            <Label  Grid.Row="2" Grid.Column="1" Content="Производитель:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                            <Label  Grid.Row="2" Grid.Column="1" Content="{Binding ProductManufacturerId}" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                            <Label  Grid.Row="3" Grid.Column="1" Content="Стоимость:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+                            <Label  Grid.Row="3" Grid.Column="1"  Content="{Binding ProductCost}" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                            <Label  Grid.Row="1" Grid.Column="2" Content="Скидка::" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                            <Label Grid.Column="2" Grid.RowSpan="4" Content="{Binding ProductDiscountAmount}" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label  Content="количество:" Grid.ColumnSpan="2" Margin="533,48,0,199" Grid.RowSpan="2" Grid.Row="1"/>
+        <Label x:Name="count" Content="" Grid.ColumnSpan="2" Margin="533,21,0,178" Grid.Row="2"/>
+        <Label Content="поиск:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"></Label>
+        <TextBox x:Name="search" Grid.Column="0" VerticalAlignment="Center" Margin="52,0,35,0" Grid.Row="1" TextChanged="search_TextChanged" />
+        <ComboBox Text="Скидки" HorizontalAlignment="Center" Grid.Column="1" Width="143" Grid.Row="1" >
             <ComboBoxItem Content="0-10%" Selected="ComboBoxItem_Selected"></ComboBoxItem>
             <ComboBoxItem Content="10-15%" Selected="ComboBoxItem_Selected_1"></ComboBoxItem>
             <ComboBoxItem  Content="15-100%" Selected="ComboBoxItem_Selected_2"></ComboBoxItem>

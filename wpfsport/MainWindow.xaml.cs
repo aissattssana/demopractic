@@ -47,5 +47,19 @@ namespace wpfsport
                     }
             
         }
+
+        private void tovars_Click(object sender, RoutedEventArgs e)
+        {
+            Tovars tov = new Tovars();
+            tov.Show();
+            this.Hide();
+        }
+
+        private void orders_Click(object sender, RoutedEventArgs e)
+        {
+            Orders tov = new Orders();
+            tov.Show();
+            this.Hide();
+        }
     }
 }

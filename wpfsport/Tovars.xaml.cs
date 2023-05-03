@@ -25,9 +25,10 @@ namespace wpfsport
             InitializeComponent();
             sport = new SportdbContext();
             //sport.Products.Load();
-            ProductGrid.ItemsSource = sport.Products.ToList();
+            CatalogView.ItemsSource = sport.Products.ToList();
+            count.Content = CatalogView.Items.Count.ToString();
 
-
+            
         }
 
         private void entr_Click(object sender, RoutedEventArgs e)
@@ -48,25 +49,37 @@ namespace wpfsport
 
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-            ProductGrid.ItemsSource = sport.Products.Where(x=>x.ProductDiscountAmount <10 ).ToList();
+            CatalogView.ItemsSource = sport.Products.Where(x=>x.ProductDiscountAmount <10 ).ToList();
+            count.Content = CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
         {
 
-            ProductGrid.ItemsSource = sport.Products.Where(x => x.ProductDiscountAmount >10 && x.ProductDiscountAmount<15).ToList();
+            CatalogView.ItemsSource = sport.Products.Where(x => x.ProductDiscountAmount >10 && x.ProductDiscountAmount<15).ToList();
+            count.Content = CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
         {
 
-            ProductGrid.ItemsSource = sport.Products.Where(x => x.ProductDiscountAmount > 15 && x.ProductDiscountAmount < 100).ToList();
+            CatalogView.ItemsSource = sport.Products.Where(x => x.ProductDiscountAmount > 15 && x.ProductDiscountAmount < 100).ToList();
+            count.Content = CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
         {
 
-            ProductGrid.ItemsSource = sport.Products.ToList();
+            CatalogView.ItemsSource = sport.Products.ToList();
+            count.Content = CatalogView.Items.Count.ToString();
         }
+
+        private void search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CatalogView.ItemsSource = sport.Products.Where(x => x.ProductName == search.Text).ToList();
+            count.Content = CatalogView.Items.Count.ToString();
+
+        }
+       
     }
 }

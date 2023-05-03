@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:wpfsport"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+        <Style x:Key="NullImage" TargetType="Image">
+            <Setter Property="Source" Value="https://aelektro.ru/images/nofoto.png"></Setter>
+            </Style>
+        </Application.Resources>
 </Application>
