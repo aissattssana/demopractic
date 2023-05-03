@@ -8,6 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resource\B538G6.jpg" />
+    <None Remove="Resource\D648N7.jpg" />
+    <None Remove="Resource\D830R5.jpg" />
+    <None Remove="Resource\E324U7.jpg" />
+    <None Remove="Resource\F735B6.jpg" />
+    <None Remove="Resource\F746E6.jpg" />
+    <None Remove="Resource\F937G4.jpg" />
+    <None Remove="Resource\G403T5.jpg" />
+    <None Remove="Resource\G598Y6.jpg" />
+    <None Remove="Resource\picture.png" />
+    <None Remove="Resource\А112Т4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
@@ -17,7 +31,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resource\" />
+    <Resource Include="Resource\B538G6.jpg" />
+    <Resource Include="Resource\D648N7.jpg" />
+    <Resource Include="Resource\D830R5.jpg" />
+    <Resource Include="Resource\E324U7.jpg" />
+    <Resource Include="Resource\F735B6.jpg" />
+    <Resource Include="Resource\F746E6.jpg" />
+    <Resource Include="Resource\F937G4.jpg" />
+    <Resource Include="Resource\G403T5.jpg" />
+    <Resource Include="Resource\G598Y6.jpg" />
+    <Resource Include="Resource\picture.png" />
+    <Resource Include="Resource\А112Т4.jpg" />
   </ItemGroup>
 
 </Project>
