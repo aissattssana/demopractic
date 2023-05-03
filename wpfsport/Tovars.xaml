@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:wpfsport"
         mc:Ignorable="d"
         Title="Tovars" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="NullImage" TargetType="Image">
+            <Setter Property="Source" Value="https://aelektro.ru/images/nofoto.png"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -42,7 +47,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Column="0" Grid.RowSpan ="4" Source="{Binding ProductPhoto, FallbackValue={StaticResource NullImage}}" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <Image Grid.Column="0" Grid.RowSpan ="4" Source="{Binding ProductPhotoFromResources, FallbackValue={StaticResource NullImage}}" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
                             <TextBlock Grid.Column="1" Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
                             <Label  Grid.Row="0" Grid.Column="1" Content="Наименование:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
@@ -64,11 +69,19 @@
         <Label x:Name="count" Content="" Grid.ColumnSpan="2" Margin="533,21,0,178" Grid.Row="2"/>
         <Label Content="поиск:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"></Label>
         <TextBox x:Name="search" Grid.Column="0" VerticalAlignment="Center" Margin="52,0,35,0" Grid.Row="1" TextChanged="search_TextChanged" />
-        <ComboBox Text="Скидки" HorizontalAlignment="Center" Grid.Column="1" Width="143" Grid.Row="1" >
+        <Label Content="фильтрация по цене:" Grid.ColumnSpan="2" Margin="533,48,0,0" Grid.RowSpan="2"/>
+        <Label Content="сортировка:" Grid.ColumnSpan="2" Margin="533,64,0,130" Grid.Row="2"/>
+        <ComboBox Text="Скидки" HorizontalAlignment="Left" Grid.Column="1" Width="143" Margin="124,47,0,0" Grid.RowSpan="2" >
             <ComboBoxItem Content="0-10%" Selected="ComboBoxItem_Selected"></ComboBoxItem>
             <ComboBoxItem Content="10-15%" Selected="ComboBoxItem_Selected_1"></ComboBoxItem>
             <ComboBoxItem  Content="15-100%" Selected="ComboBoxItem_Selected_2"></ComboBoxItem>
             <ComboBoxItem  Content="0-100%" Selected="ComboBoxItem_Selected_3"></ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox Text="Скидки" HorizontalAlignment="Left" Grid.Column="1" Width="143" Margin="124,63,0,129" Grid.Row="2" SelectionChanged="ComboBox_SelectionChanged_1" >
+            <ComboBoxItem Content="по убыванию" Selected="ComboBoxItem_Selected_4"></ComboBoxItem>
+            <ComboBoxItem Content="по возрастанию" Selected="ComboBoxItem_Selected_5"></ComboBoxItem>
+            <ComboBoxItem Content="все товары" Selected="ComboBoxItem_Selected_6"></ComboBoxItem>
         </ComboBox>
     </Grid>
 </Window>

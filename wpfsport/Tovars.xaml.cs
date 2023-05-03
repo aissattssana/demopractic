@@ -80,6 +80,28 @@ namespace wpfsport
             count.Content = CatalogView.Items.Count.ToString();
 
         }
-       
+
+        private void ComboBoxItem_Selected_4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComboBoxItem_Selected_5(object sender, RoutedEventArgs e)
+        {
+            CatalogView.ItemsSource = sport.Products.OrderBy(x => x.ProductCost).ToList();
+            count.Content = CatalogView.Items.Count.ToString();
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            CatalogView.ItemsSource = sport.Products.OrderByDescending(x => x.ProductCost).ToList();
+            count.Content = CatalogView.Items.Count.ToString();
+        }
+
+        private void ComboBoxItem_Selected_6(object sender, RoutedEventArgs e)
+        {
+            CatalogView.ItemsSource = sport.Products.ToList();
+            count.Content = CatalogView.Items.Count.ToString();
+        }
     }
 }

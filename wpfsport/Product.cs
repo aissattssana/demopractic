@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace wpfsport;
 
@@ -40,4 +41,7 @@ public partial class Product
     public virtual ProductSupplier ProductSupplier { get; set; } = null!;
 
     public virtual UnitType UnitType { get; set; } = null!;
+
+    [NotMapped]
+    public string ProductPhotoFromResources => "/Resource/" + ProductPhoto;
 }
