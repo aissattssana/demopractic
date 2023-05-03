@@ -19,7 +19,9 @@
         <TextBox x:Name="password" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327" Margin="73,0,0,0" ></TextBox>
         <Label Content="пароль" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" Margin="428,43,0,0" ></Label>
         <Button x:Name="entr" Content="Войти" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
-        <Button x:Name="tovars" Content="Каталог" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF498C51" Margin="391,0,0,0"/>
+        <!--<Button x:Name="orders" Content="заказы" Click="orders_Click" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF18541F" Margin="44,0,0,0"></Button>-->
+
+        <Button x:Name="tovars" Content="Каталог" Click="tovars_Click" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF498C51" Margin="391,0,0,0"/>
     </Grid>
 
 </Window>

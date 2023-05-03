@@ -25,5 +25,10 @@ namespace wpfsport
             InitializeComponent();
             //CatalogView.ItemsSource = db.Products.ToList();
         }
+
+        public void ImageFromFolder()
+        {
+            
+        }
     }
 }
