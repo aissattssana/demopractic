@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <Label Content="ООО Спорт" Grid.ColumnSpan="2" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
         <Button x:Name="entr" Content="назад" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
-        <ListView Background="#FFFCF0F0" Grid.Row="2" x:Name="CatalogView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Background="#FFEBF6D6" Grid.Row="2" x:Name="CatalogView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical">

@@ -30,7 +30,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-                            <Image Grid.Column="0" Grid.RowSpan ="4" Source="{Binding ProductPhoto, FallbackValue={StaticResource NullImage}}" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <Image Grid.Column="0" Grid.RowSpan ="4" Source="Resource/B538G6.jpg"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
                             <TextBlock Grid.Column="1" Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <Label  Grid.Row="0" Grid.Column="1" Content="Наименование:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
                             <Label  Grid.Row="0" Grid.Column="1" Content="{Binding ProductName}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>

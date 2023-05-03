@@ -43,5 +43,5 @@ public partial class Product
     public virtual UnitType UnitType { get; set; } = null!;
 
     [NotMapped]
-    public string ProductPhotoFromResources => "/Resource/" + ProductPhoto;
+    public string ProductPhotoFromResources => "Resource/" + ProductPhoto;
 }
