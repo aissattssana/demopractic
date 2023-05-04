@@ -25,21 +25,25 @@ namespace wpfsport
             InitializeComponent();
         }
         public SportdbContext sport = new SportdbContext();
+
         private void entr_Click(object sender, RoutedEventArgs e)
         { 
             
              
                 if (sport.Users.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleId == 1))
-                { 
-                        MessageBox.Show("Успешная авторизация клиента");
-                    Tovars tov = new Tovars();
-                    tov.Show();
-                    this.Hide();
-                    }
-                    if (sport.Users.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleId == 2))
+                {
+                Hide();
+                Tovars tov = new Tovars();
+                tov.Show();
+            }
+            if (sport.Users.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleId == 2))
                     {
                         MessageBox.Show("Успешная авторизация администратора");
-                    }
+
+                Hide();
+                AdminWin admin = new AdminWin();
+                admin.Show();
+            }
 
                     if (sport.Users.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleId == 3))
                     {
