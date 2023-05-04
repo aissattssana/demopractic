@@ -26,7 +26,7 @@ namespace wpfsport
             sport = new SportdbContext();
             //sport.Products.Load();
             CatalogView.ItemsSource = sport.Products.ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content ="найдено"+CatalogView.Items.Count.ToString();
 
             
         }
@@ -50,34 +50,34 @@ namespace wpfsport
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
         {
             CatalogView.ItemsSource = sport.Products.Where(x=>x.ProductDiscountAmount <10 ).ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
         {
 
             CatalogView.ItemsSource = sport.Products.Where(x => x.ProductDiscountAmount >10 && x.ProductDiscountAmount<15).ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
         {
 
             CatalogView.ItemsSource = sport.Products.Where(x => x.ProductDiscountAmount > 15 && x.ProductDiscountAmount < 100).ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
         {
 
             CatalogView.ItemsSource = sport.Products.ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
 
         private void search_TextChanged(object sender, TextChangedEventArgs e)
         {
             CatalogView.ItemsSource = sport.Products.Where(x => x.ProductName == search.Text).ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
 
         }
 
@@ -89,19 +89,19 @@ namespace wpfsport
         private void ComboBoxItem_Selected_5(object sender, RoutedEventArgs e)
         {
             CatalogView.ItemsSource = sport.Products.OrderBy(x => x.ProductCost).ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
 
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             CatalogView.ItemsSource = sport.Products.OrderByDescending(x => x.ProductCost).ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
 
         private void ComboBoxItem_Selected_6(object sender, RoutedEventArgs e)
         {
             CatalogView.ItemsSource = sport.Products.ToList();
-            count.Content = CatalogView.Items.Count.ToString();
+            count.Content = "найдено" + CatalogView.Items.Count.ToString();
         }
     }
 }

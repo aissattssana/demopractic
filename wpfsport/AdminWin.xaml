@@ -1,0 +1,80 @@
+﻿<Window x:Class="wpfsport.AdminWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpfsport"
+        mc:Ignorable="d"
+        Title="AdminWin" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="NullImage" TargetType="Image">
+            <Setter Property="Source" Value="https://aelektro.ru/images/nofoto.png"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="ООО Спорт" Grid.ColumnSpan="2" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
+        <DataGrid x:Name="ProductGrid" DataGridCell.Selected="ProductGrid_Selected" AutoGenerateColumns="False" EnableRowVirtualization="True"
+                    HorizontalAlignment="Left"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="ProductGrid_SelectionChanged" Margin="0,62,0,0" Grid.RowSpan="2" Width="390">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="name" Binding="{Binding ProductName}"
+                                    Header="наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="cost" Binding="{Binding ProductCost}"
+                                    Header="стоимость" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="discount" Binding="{Binding ProductDiscountAmount}"
+                                    Header="скидка" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="quantity" Binding="{Binding ProductQuantityInStock}"
+                                    Header="количество" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="description" Binding="{Binding ProductDescription}"
+                                    Header="описание" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="photo" Binding="{Binding ProductPhoto}"
+                                    Header="фото" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Название:" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10,60,0,0" Grid.RowSpan="2"/>
+        <TextBox x:Name="prod_name"  Text="{Binding SelectedItem.ProductName, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="175,0,0,0" />
+        <Label Content="Цена:" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" />
+        <TextBox x:Name="prod_cost"  Text="{Binding SelectedItem.ProductCost, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Margin="175,25,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="138" />
+        <Label Content="Описание:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,46,0,0" />
+        <TextBox x:Name="prod_description"   Text="{Binding SelectedItem.ProductDescription, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="175,49,0,0"/>
+        <Label Content="Количество:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,71,0,0" />
+        <TextBox x:Name="prod_count"  Text="{Binding SelectedItem.ProductQuantityInStock, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="175,74,0,0" />
+        <Label Content="Скидка:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,95,0,0" />
+        <TextBox x:Name="prod_discount" Text="{Binding SelectedItem.ProductDiscountAmount, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="175,98,0,0"/>
+        <Label Content="Производитель:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,120,0,0" />
+        <ComboBox x:Name="prod_manufacturer_combobox" DisplayMemberPath="ProductManufacturerName" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="175,122,0,0"/>
+
+        <Button x:Name="back" Click="back_Click" Content="назад" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Background="#FF498C51" Width="74" Margin="10,0,0,0" ></Button>
+        <Button x:Name="create" Click="create_Click" Content="добавить" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF76E383" Width="74"  ></Button>
+        <Button x:Name="delete" Click="delete_Click" Content="удалить" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#FFE38276" Width="74"  ></Button>
+        <Button x:Name="save" Click="save_Click" Content="сохранить" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF76E383" Width="74"  ></Button>
+        <Label Content="Фото:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,146,0,0" />
+        <Button Name="photo_open" Click="photo_open_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="178,147,0,0" Width="132" >Open file</Button>
+        <Label Content="Максимальная скидка:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,170,0,0" />
+
+        <TextBox x:Name="prod_maxdiscount" Text="{Binding SelectedItem.ProductMaxDiscountAmount, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="178,173,0,0"/>
+        <Label Content="Поставщик:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,194,0,0" />
+        <ComboBox x:Name="prod_supplier_combobox" DisplayMemberPath="ProductSupplierName" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="178,197,0,0" />
+        <Label Content="Категория:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,218,0,0" />
+
+        <ComboBox x:Name="prod_category_combobox"  Grid.Column="1" Grid.Row="1" DisplayMemberPath="ProductCategoryName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="178,221,0,0" />
+        <!--<TextBox x:Name="prod_category" Text="{Binding SelectedItem.ProductCategoryID, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="178,221,0,0"/>-->
+        <Label Content="Артикул:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,241,0,0" />
+        <TextBox x:Name="prod_article" Text="{Binding SelectedItem.ProductArticleNumber, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="178,244,0,0"/>
+        <Label Content="Мера измерения:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,263,0,0" />
+        <ComboBox x:Name="prod_unittype_combobox" DisplayMemberPath="UnitTypeName"  Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top"  Width="138" Margin="178,269,0,0"/>
+        <Button x:Name="clean" Click="clean_Click" Content="сохранить" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Width="74" Margin="265,0,0,0"  />
+
+    </Grid>
+</Window>
