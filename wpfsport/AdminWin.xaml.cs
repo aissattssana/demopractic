@@ -28,13 +28,13 @@ namespace wpfsport
         public SportdbContext sport = new SportdbContext();
         Product currentproduct = new Product();
 
-        public AdminWin()
+        public AdminWin( User user)
         {
             InitializeComponent();
             sport = new SportdbContext();
             ProductGrid.ItemsSource = sport.Products.ToList();
            InitComboBoxes();
-          //  InitId();
+                fio.Content = user.UserSurname + " " + user.UserName + " " + user.UserName;
         }
         private void InitComboBoxes()
         {
@@ -42,88 +42,15 @@ namespace wpfsport
             prod_manufacturer_combobox.ItemsSource = sport.ProductManufacturers.ToList();
             prod_unittype_combobox.ItemsSource = sport.UnitTypes.ToList();
             prod_supplier_combobox.ItemsSource = sport.ProductSuppliers.ToList();
-
-
-
-            ////foreach (ProductCategory category in sport.ProductCategories)
-            ////{
-            ////    prod_category_combobox.Items.Add(category.ProductCategoryName);
-
-            ////    if (category.ProductCategoryId == currentproduct.ProductCategoryId)
-            ////    {
-            ////        prod_category_combobox.SelectedItem = category.ProductCategoryName;
-            ////    }
-            ////}
-
-            //foreach (UnitType unitType in sport.UnitTypes)
-            //{
-            //    prod_unittype_combobox.Items.Add(unitType.UnitTypeName);
-
-            //    if (unitType.UnitTypeId == currentproduct.UnitTypeId)
-            //    {
-            //        prod_unittype_combobox.SelectedItem = unitType.UnitTypeName;
-            //    }
-            //}
-            //foreach (ProductManufacturer manufacturer in sport.ProductManufacturers)
-            //{
-            //    prod_manufacturer_combobox.Items.Add(manufacturer.ProductManufacturerName);
-
-            //    if (manufacturer.ProductManufacturerId == currentproduct.ProductManufacturerId)
-            //    {
-            //        prod_manufacturer_combobox.SelectedItem = manufacturer.ProductManufacturerName;
-            //    }
-            //}
-            //foreach (ProductSupplier supplier in sport.ProductSuppliers)
-            //{
-            //    prod_supplier_combobox.Items.Add(supplier.ProductSupplierName);
-
-            //    if (supplier.ProductSupplierId == currentproduct.ProductSupplierId)
-            //    {
-            //        prod_supplier_combobox.SelectedItem = supplier.ProductSupplierName;
-            //    }
-            //}
-
         }
-        private void InitId()
-        {
-            foreach (ProductManufacturer man in sport.ProductManufacturers)
-            {
-                if (man.ProductManufacturerId == currentproduct.ProductManufacturerId)
-                {
-                    currentproduct.ProductManufacturer = man;
-                }
-            }
-
-            foreach (ProductSupplier sup in sport.ProductSuppliers)
-            {
-                if (sup.ProductSupplierId == currentproduct.ProductSupplierId)
-                {
-                    currentproduct.ProductSupplier = sup;
-                }
-            }
-            foreach (UnitType unit in sport.UnitTypes)
-            {
-                if (unit.UnitTypeId == currentproduct.UnitTypeId)
-                {
-                    currentproduct.UnitType = unit;
-                }
-            }
-            foreach (ProductCategory cat in sport.ProductCategories)
-            {
-                if (cat.ProductCategoryId == currentproduct.ProductCategoryId)
-                {
-                    currentproduct.ProductCategory = cat;
-                }
-            }
-        }
-        private void back_Click(object sender, RoutedEventArgs e)
+       private void back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             this.Hide();
             main.ShowDialog();
         }
 
-        private void create_Click(object sender, RoutedEventArgs e)
+        private void create_Click(object sender, RoutedEventArgs e) //добавление нового товара
         {
             TextBox[] textBoxes = { prod_cost, prod_count, prod_description, prod_discount, prod_name, prod_article};
           
@@ -189,15 +116,16 @@ namespace wpfsport
             }
             return false;
         }
-        private void delete_Click(object sender, RoutedEventArgs e)
+        private void delete_Click(object sender, RoutedEventArgs e) //удаление товара 
         {
-            sport.Products.Remove(currentproduct);
+            var deleted = sport.Products.ToList().Find(pr => pr.ProductId == currentproduct.ProductId);
+            sport.Products.Remove(deleted);
             sport.SaveChanges();
             MessageBox.Show("Товар удален");
             ProductGrid.ItemsSource = sport.Products.ToList();
         }
 
-        private void save_Click(object sender, RoutedEventArgs e)
+        private void save_Click(object sender, RoutedEventArgs e) //сохранение изменений данных товара
         {
             TextBox[] textBoxes = { prod_cost,prod_maxdiscount, prod_count, prod_description, prod_discount, prod_name, prod_article };
             string cost = prod_cost.Text.Replace(".", ",");

@@ -23,6 +23,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Label Content="ООО Спорт" Grid.ColumnSpan="2" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
+        <Label Content="fio " x:Name="fio" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
         <DataGrid x:Name="ProductGrid" DataGridCell.Selected="ProductGrid_Selected" AutoGenerateColumns="False" EnableRowVirtualization="True"
                     HorizontalAlignment="Left"
                     RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="ProductGrid_SelectionChanged" Margin="0,62,0,0" Grid.RowSpan="2" Width="390">
@@ -62,7 +63,6 @@
         <Label Content="Фото:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,146,0,0" />
         <Button Name="photo_open" Click="photo_open_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="178,147,0,0" Width="132" >Open file</Button>
         <Label Content="Максимальная скидка:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,170,0,0" />
-
         <TextBox x:Name="prod_maxdiscount" Text="{Binding SelectedItem.ProductMaxDiscountAmount, ElementName=ProductGrid}" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Margin="178,173,0,0"/>
         <Label Content="Поставщик:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="10,194,0,0" />
         <ComboBox x:Name="prod_supplier_combobox" DisplayMemberPath="ProductSupplierName" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="178,197,0,0" />

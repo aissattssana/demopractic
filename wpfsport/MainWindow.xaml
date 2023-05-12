@@ -13,15 +13,23 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <Label Content="ООО Спорт" Grid.Row="0" FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></Label>
-        <TextBox x:Name="login" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327" Margin="73,0,0,0" ></TextBox>
-        <Label Content="логин" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" Margin="428,43,0,0" ></Label>
-        <TextBox x:Name="password" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327" Margin="73,0,0,0" ></TextBox>
-        <Label Content="пароль" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" Margin="428,43,0,0" ></Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="ООО Спорт" FontFamily="Century Gothic" HorizontalAlignment="Left" FontSize="22" VerticalAlignment="Center" Margin="236,0,0,0"/>
+        <TextBox x:Name="login" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327"  ></TextBox>
+        <Label Content="логин" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"  VerticalAlignment="Center"  ></Label>
+        <TextBox x:Name="password" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="327" ></TextBox>
+        <Label Content="пароль" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right"  VerticalAlignment="Center"></Label>
         <Button x:Name="entr" Content="Войти" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
         <!--<Button x:Name="orders" Content="заказы" Click="orders_Click" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF18541F" Margin="44,0,0,0"></Button>-->
+        <TextBox x:Name="Captcha_Text" Height="25" Width="150" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="1" IsEnabled="False"></TextBox>
+        <TextBox x:Name="Captcha_User_Text" Height="25" Width="150" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2"></TextBox>
+        <Label Content="Введите текст" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TickBar x:Name="TickBar" Height="30" Width="30" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TickBar>
 
-        <Button x:Name="tovars" Content="Каталог" Click="tovars_Click" Grid.Row="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF498C51" Margin="391,0,0,0"/>
+        <Button x:Name="tovars" Content="Каталог" Click="tovars_Click" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="98" Height="39" Background="#FF498C51" Grid.Column="1" />
     </Grid>
 
 </Window>
