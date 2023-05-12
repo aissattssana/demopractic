@@ -7,45 +7,43 @@
         mc:Ignorable="d"
         Title="Orders" Height="450" Width="800">
     <Grid>
-        <!--<ListView Background="#FFFCF0F0" Grid.Row="2" x:Name="CatalogView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Vertical">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="ООО Спорт" FontFamily="Century Gothic" HorizontalAlignment="Left" FontSize="22" VerticalAlignment="Center" Grid.Column="1" Margin="228,0,0,0" Grid.ColumnSpan="2"/>
+        <Label Content=" " Name="fio" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <DataGrid x:Name="orders"  ItemsSource="{Binding }" SelectionChanged="orders_SelectionChanged" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="id_prod" Text="{Binding SelectedItem.ProductId, ElementName=orders}"/>
+        <Button x:Name="delete" Background="#FFE38276" Content="удалить товар" Click="delete_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="27" Width="106" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="Название:" HorizontalAlignment="Left" Margin="5,2,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="2"/>
+        <TextBlock x:Name="name_t" Text="{Binding SelectedItem.ProductName, ElementName=orders}"  HorizontalAlignment="Left" Margin="71,5,0,0" VerticalAlignment="Top" Width="58" Height="18" FontSize="10" Grid.Column="2" Grid.Row="2" />
+        <Label Content="Производитель:" HorizontalAlignment="Left" Margin="5,89,0,0" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"/>
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="7,135,0,0" VerticalAlignment="Top" Height="25" RenderTransformOrigin="0.021,0.45" Grid.Row="2" Grid.Column="2"/>
+        <TextBlock x:Name="description_t"   HorizontalAlignment="Left" Margin="7,160,0,0" VerticalAlignment="Top" Width="282" Height="24" FontSize="10" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Image HorizontalAlignment="Left" Height="69" Margin="3,2,0,0" VerticalAlignment="Top" Width="79" Grid.Column="3" Grid.Row="2"/>
+        <Label Content="Сумма заказа" HorizontalAlignment="Left" Margin="9,0,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1"/>
+        <TextBlock x:Name="summ_t"  HorizontalAlignment="Left" Height="26" Margin="118,2,0,0" VerticalAlignment="Top" Width="98" Grid.Column="1" Grid.Row="3"/>
+        <Label Content="Скидка" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1"/>
+        <TextBlock x:Name="discount_t"  HorizontalAlignment="Left" Height="26" Margin="74,26,0,0" VerticalAlignment="Top" Width="98" Grid.Column="1" Grid.Row="3"/>
+        <Label Content="Пункт выдачи" HorizontalAlignment="Left" Margin="9,48,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1"/>
+        <ComboBox x:Name="point" DisplayMemberPath="Address" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="25" Margin="172,50,0,0" VerticalAlignment="Top" Width="104" Grid.Column="1" Grid.Row="3" />
+        <Label Content="Цена:" HorizontalAlignment="Left" Margin="5,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.605,0.302" Grid.Column="2" Grid.Row="2"/>
+        <TextBlock x:Name="cost_t"   HorizontalAlignment="Left" Margin="57,36,0,0" VerticalAlignment="Top" Width="58" Height="18" FontSize="10" Grid.Column="2" Grid.Row="2" />
+        <Label Content="Количество:" HorizontalAlignment="Left" Margin="5,58,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" Grid.Row="2"/>
+        <TextBlock x:Name="count_t"  HorizontalAlignment="Left" Margin="77,64,0,0" VerticalAlignment="Top" Width="56" Height="20" FontSize="10" Grid.Column="2" Grid.Row="2"/>
+        <TextBlock x:Name="manufacturer_t" HorizontalAlignment="Left" Height="23" Margin="7,115,0,0" VerticalAlignment="Top" Width="282" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Button Content="Оформить" Background="#FF76E383" VerticalAlignment="Center" HorizontalAlignment="Left" Height="35" Width="144" x:Name="order_save" Click="order_save_Click" Grid.Column="2" Grid.Row="3"/>
+        <Button x:Name="pdf" Click="pdf_Click" VerticalAlignment="Center" Background="#FF76E383" Content="талон" HorizontalAlignment="Right" Height="35"   Width="106" Grid.Column="2" Grid.Row="3"/>
 
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Black">-->
-                        <Grid Width="400" Height="200">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-                            <Image Grid.Column="0" Grid.RowSpan ="4" Source="Resource/B538G6.jpg"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
-                            <TextBlock Grid.Column="1" Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <Label  Grid.Row="0" Grid.Column="1" Content="Наименование:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-                            <Label  Grid.Row="0" Grid.Column="1" Content="{Binding ProductName}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-                            <Label  Grid.Row="1" Grid.Column="1" Content="Описание:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-                            <Label  Grid.Row="1" Grid.Column="1" Content="{Binding ProductDescription}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-                            <Label  Grid.Row="2" Grid.Column="1" Content="Производитель:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-                            <Label  Grid.Row="2" Grid.Column="1" Content="{Binding ProductManufacturerId}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-                            <Label  Grid.Row="3" Grid.Column="1" Content="Стоимость:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-                            <Label  Grid.Row="3" Grid.Column="1"  Content="{Binding ProductCost}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-                            <Label  Grid.Row="1" Grid.Column="2" Content="Скидка::" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-            <Label Grid.Column="2" Grid.RowSpan="4" Content="{Binding ProductDiscountAmount}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        </Grid>
-                    <!--</Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
+
     </Grid>
 </Window>

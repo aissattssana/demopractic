@@ -26,6 +26,11 @@
         <Label Content=" " Name="fio" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button x:Name="entr" Content="назад" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FF76E383" Click="entr_Click"></Button>
         <ListView Background="White" Grid.Row="2" x:Name="CatalogView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить в заказ" Click="MenuItem_Click" ></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical">
@@ -71,7 +76,9 @@
         <TextBox x:Name="search" Grid.Column="0" VerticalAlignment="Center" Margin="52,0,35,0" Grid.Row="1" TextChanged="search_TextChanged" />
         <Label Content="фильтрация по цене:" Grid.ColumnSpan="2" Margin="533,48,0,0" Grid.RowSpan="2"/>
         <Label Content="сортировка:" Grid.ColumnSpan="2" Margin="533,48,0,194" Grid.Row="1" Grid.RowSpan="2"/>
-        <ComboBox Text="Скидки" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Width="143" Margin="124,2,0,0" Grid.Row="1" >
+        <Label Content="пункт выдачи:" Grid.ColumnSpan="2" Margin="533,95,0,103" Grid.Row="2"/>
+        <ComboBox x:Name="point" DisplayMemberPath="Address" ItemsSource="{Binding}" Margin="0,101,0,0" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Width="140"/>
+        <ComboBox Text="Скидки" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Width="143" Margin="124,2,0,0" Grid.Row="1" SelectionChanged="ComboBox_SelectionChanged_2" >
             <ComboBoxItem Content="0-10%" Selected="ComboBoxItem_Selected"></ComboBoxItem>
             <ComboBoxItem Content="10-15%" Selected="ComboBoxItem_Selected_1"></ComboBoxItem>
             <ComboBoxItem  Content="15-100%" Selected="ComboBoxItem_Selected_2"></ComboBoxItem>
@@ -83,5 +90,6 @@
             <ComboBoxItem Content="по возрастанию" Selected="ComboBoxItem_Selected_5"></ComboBoxItem>
             <ComboBoxItem Content="все товары" Selected="ComboBoxItem_Selected_6"></ComboBoxItem>
         </ComboBox>
+        <Button x:Name="to_order" Content="посмотреть заказ" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142" Height="39" Background="#FFD6FCDA" Click="to_order_Click" Grid.Column="1"/>
     </Grid>
 </Window>

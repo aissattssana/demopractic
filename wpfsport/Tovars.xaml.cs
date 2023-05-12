@@ -20,17 +20,65 @@ namespace wpfsport
     public partial class Tovars : Window
     {
         public SportdbContext sport = new SportdbContext();
-        public Tovars()
+        Product currentproduct = new Product();
+        public Tovars(User user)
         {
             InitializeComponent();
             sport = new SportdbContext();
             //sport.Products.Load();
             CatalogView.ItemsSource = sport.Products.ToList();
-            count.Content ="найдено"+CatalogView.Items.Count.ToString();
-
-            
+            point.ItemsSource = sport.PickupPoints.ToList();
+            count.Content ="найдено "+CatalogView.Items.Count.ToString();
+            if (user != null)
+            {
+                fio.Content = user.UserSurname + " " + user.UserName + " " + user.UserName;
+                to_order.IsEnabled = true;
+            }
+            else
+            {
+                fio.Content = "Неавторизированный пользователь";
+                to_order.IsEnabled= false;
+            }
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (point.SelectedItem != null)
+            {
+                using (SportdbContext db = new SportdbContext())
+                {
+                    int idd = (from dt in db.Users where dt.UserSurname + dt.UserName + dt.UserPatronymic == fio.Content.ToString() select dt.UserId).FirstOrDefault();
+                    int oid = Convert.ToInt32((from dt in db.Orders where dt.UserId == idd select dt.UserId).FirstOrDefault());
+                    Random rnd = new Random();
+                    int i = rnd.Next(0, 3000);
+                    int pid = (from ut in db.PickupPoints where ut.Address == point.Text select ut.PickupPointId).FirstOrDefault();
+                    if (idd != oid)
+                    {
+                        Order order = new Order { OrderStatusId = 1, PickupPointId = pid, OrderCreateDate = DateTime.Now, OrderDeliveryDate = DateTime.UtcNow.AddDays(6), UserId = idd, OrderGetCode = i };
+                        db.Orders.Add(order);
+                        int a = order.OrderId;
+                        db.SaveChanges();
+                        to_order.Visibility = Visibility.Visible;
+
+                        OrderProduct op = new OrderProduct { OrderId = a, ProductId = currentproduct.ProductId, Count = 1 };
+                        db.OrderProducts.Add(op);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        int ord = (from dt in db.Orders where dt.UserId == idd select dt.OrderId).FirstOrDefault();
+                        OrderProduct op = new OrderProduct { OrderId = ord, ProductId = currentproduct.ProductId, Count = 1 };
+                        db.OrderProducts.Add(op);
+                        db.SaveChanges();
+                    }
+
+
+                }
+                MessageBox.Show("Товар добавлен в заказ");
+            }
+            else { MessageBox.Show("Выберите пунк выдачи"); }
+
+        }
         private void entr_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
@@ -102,6 +150,35 @@ namespace wpfsport
         {
             CatalogView.ItemsSource = sport.Products.ToList();
             count.Content = "найдено" + CatalogView.Items.Count.ToString();
+        }
+
+        private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void to_order_Click(object sender, RoutedEventArgs e)
+        {
+
+            int idd = (from dt in sport.Users where dt.UserSurname + dt.UserName + dt.UserPatronymic == fio.Content.ToString() select dt.UserId).FirstOrDefault();
+            int oid = Convert.ToInt32((from dt in sport.Orders where dt.UserId == idd select dt.OrderId).FirstOrDefault());
+
+            int ord = (from ut in sport.OrderProducts where ut.OrderId == oid select ut.OrderId).FirstOrDefault();
+            var p = (from ut in sport.OrderProducts from dt in sport.Orders where ut.OrderId == dt.OrderId select ut.ProductId).ToList();
+            var order = sport.Orders.ToList().Find(x => x.OrderId == ord);
+
+            Orders ord_w = new Orders(ord, order);
+            ord_w.Show();
+            ord_w.fio.Content = fio.Content;
+
+            ord_w.orders.DataContext = sport.OrderProducts.Where(x => x.OrderId == oid).ToList();
+
+            foreach (int a in p)
+            {
+                ord_w.summ_t.Text = (from ut in sport.Products where ut.ProductId == a select ut.ProductCost).ToList().Sum().ToString();
+                ord_w.discount_t.Text = (from ut in sport.Products where ut.ProductId == a select ut.ProductDiscountAmount).ToList().Max().ToString();
+            }
+
         }
     }
 }
