@@ -1,5 +1,5 @@
 # demosportwpf
-private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+      private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var foundAgents = services.Where(x => x.Name.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
             servicesList.ItemsSource = foundAgents;
@@ -11,12 +11,15 @@ private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
                         servicesList.ItemsSource = services;
                         break;
                     }
+                    
 case 0:
                     {
                         services = services.OrderBy(x => x.CostWithDiscount).ToList();
                         servicesList.ItemsSource = services;
                         break;
                     }
+                    
+                    
 private void InitImage()
         {
             BitmapImage imageSource = new BitmapImage();
@@ -90,3 +93,11 @@ if (_currentService == null)
             }
             else { MessageBox.Show("Такая услуга уже существует"); }
         }
+        
+        
+               <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5, 5, 5, 5"/>
+        </Style>
